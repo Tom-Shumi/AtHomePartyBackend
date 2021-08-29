@@ -1,9 +1,8 @@
 package com.tomshumi.atHomePartyBackend.controller
 
+import com.tomshumi.atHomePartyBackend.service.HomeService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.util.CollectionUtils
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -11,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/home")
-class HomeController: BaseController() {
+class HomeController(
+    private val homeService: HomeService
+): BaseController() {
 
     /**
      * ホーム表示情報取得

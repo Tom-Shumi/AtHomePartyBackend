@@ -6,6 +6,16 @@ plugins {
 	war
 	kotlin("jvm") version "1.5.21"
 	kotlin("plugin.spring") version "1.5.21"
+
+
+	// MyBatis Generatorプラグイン
+	id("com.arenagod.gradle.MybatisGenerator") version "1.4"
+}
+
+mybatisGenerator {
+	verbose = true
+	// 設定ファイル
+	configFile = "src/main/resources/generatorConfig.xml"
 }
 
 group = "com.tomshumi"
@@ -16,6 +26,7 @@ configurations {
 	compileOnly {
 		extendsFrom(configurations.annotationProcessor.get())
 	}
+	mybatisGenerator
 }
 
 repositories {
@@ -41,6 +52,8 @@ dependencies {
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.security:spring-security-test")

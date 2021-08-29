@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+    <classPathEntry location="/Users/shumiya/.m2/repository/org/postgresql/postgresql/42.2.18/postgresql-42.2.18.jar"/>
+
+    <context id="atHomeParty" targetRuntime="MyBatis3Kotlin">
+
+        <!-- 生成される Java ファイルのコメントに日付を付与しない -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 生成元となるDBへの接続情報 -->
+        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/ahp"
+                    userId="shumiya" password="shumiya"/>
+
+        <!-- MyBatis Generatorの設定 -->
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.tomshumi.atHomePartyBackend.bean.entity"
+                            targetProject="src/main/kotlin"/>
+
+        <table schema="public" tableName="drink"/>
+        <table schema="public" tableName="beer_detail"/>
+        <table schema="public" tableName="chuhigh_detail"/>
+        <table schema="public" tableName="sake_detail"/>
+        <table schema="public" tableName="wine_detail"/>
+        <table schema="public" tableName="drink_category1"/>
+        <table schema="public" tableName="drink_category2"/>
+        <table schema="public" tableName="situation"/>
+        <table schema="public" tableName="snack"/>
+        <table schema="public" tableName="drink_snack"/>
+        <table schema="public" tableName="drink_situation"/>
+        <table schema="public" tableName="pickup_drink"/>
+    </context>
+</generatorConfiguration>
