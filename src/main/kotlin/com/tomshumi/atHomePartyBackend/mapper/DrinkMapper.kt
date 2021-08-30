@@ -4,12 +4,10 @@ import com.tomshumi.atHomePartyBackend.bean.entity.DrinkRecord
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Select
-import java.time.LocalDate
 
 @Mapper
-interface PickupDrinkMapper {
+interface DrinkMapper {
 
-    // ピックアップドリンク取得（取得順の指定無し）
-    @Select("SELECT d.* FROM pickup_drink pd INNER JOIN drink d ON pd.drink_id = d.id")
-    fun find(): List<DrinkRecord>
+    @Select("SELECT * FROM drink WHERE drink_category_id1 = #{categoryId} ORDER BY star DESC LIMIT #{limit} ")
+    fun findRanking(@Param("categoryId") categoryId: Int, @Param("limit") limit: Int): List<DrinkRecord>
 }
