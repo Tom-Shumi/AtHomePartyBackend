@@ -2,6 +2,7 @@ package com.tomshumi.atHomePartyBackend.controller
 
 import com.tomshumi.atHomePartyBackend.bean.response.HomeResponse
 import com.tomshumi.atHomePartyBackend.service.HomeService
+import com.tomshumi.atHomePartyBackend.util.RedisUtils
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/home")
 class HomeController(
-    private val homeService: HomeService
+    private val homeService: HomeService,
+    private val redisUtils: RedisUtils
 ): BaseController() {
 
     /**
@@ -24,6 +26,8 @@ class HomeController(
         val response = HomeResponse(homeService.home())
 
         val responseJson = gson.toJson(response)
+
+        redisUtils.set("test", response)
 
         return createResponseEntity(HttpStatus.OK, responseJson)
     }
