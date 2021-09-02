@@ -8,5 +8,8 @@ class Constants {
         const val CATEGORY_ID_CHUHIGH = 2
         const val CATEGORY_ID_SAKE = 3
         const val CATEGORY_ID_WINE = 4
+
+        //Redis Key
+        const val REDIS_KEY_HOME = "home"
     }
 }

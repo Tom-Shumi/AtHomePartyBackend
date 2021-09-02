@@ -1,5 +1,6 @@
 package com.tomshumi.atHomePartyBackend.controller
 
+import com.tomshumi.atHomePartyBackend.Constants.Companion.REDIS_KEY_HOME
 import com.tomshumi.atHomePartyBackend.bean.response.HomeResponse
 import com.tomshumi.atHomePartyBackend.service.HomeService
 import com.tomshumi.atHomePartyBackend.util.RedisUtils
@@ -25,9 +26,9 @@ class HomeController(
 
         val response = HomeResponse(homeService.home())
 
-        val responseJson = gson.toJson(response)
+        redisUtils.set(REDIS_KEY_HOME, response, 600)
 
-        redisUtils.set("test", response)
+        val responseJson = gson.toJson(response)
 
         return createResponseEntity(HttpStatus.OK, responseJson)
     }

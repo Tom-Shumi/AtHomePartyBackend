@@ -4,14 +4,19 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.tomshumi.atHomePartyBackend.service.HomeService
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Component
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 import java.util.*
 import java.util.concurrent.TimeUnit
 
+
 @Component
 class RedisUtils(
-    private val redisTemplate: StringRedisTemplate
+    @Qualifier("redisTemplate")
+    private val redisTemplate: StringRedisTemplate,
 ) {
     companion object{
         val gson = createGson()
@@ -36,12 +41,14 @@ class RedisUtils(
         }
     }
 
-    fun <T> get(key: String): T? {
+    fun <T> get(key: String, tClass: Class<T>): T? {
         val value: String? = redisTemplate.opsForValue().get(key)
 
         if (Objects.isNull(value)) return null;
 
-        return gson.fromJson<T>(value, object: TypeToken<T>() {}.type)
+        val type: ParameterizedType = GenericOf(tClass)
+
+        return gson.fromJson<T>(value, type)
     }
 
     fun hasKey(key: String): Boolean {
@@ -52,4 +59,18 @@ class RedisUtils(
         redisTemplate.delete(key)
     }
 
+    class GenericOf<T>(private val type: Class<T>) : ParameterizedType {
+
+        override fun getActualTypeArguments(): Array<Type> {
+            return Array(1){type}
+        }
+
+        override fun getRawType(): Type {
+            return type
+        }
+
+        override fun getOwnerType(): Type {
+            return type
+        }
+    }
 }

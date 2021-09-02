@@ -3,15 +3,12 @@ package com.tomshumi.atHomePartyBackend.config
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.RedisSerializer
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
-import org.springframework.data.redis.core.RedisTemplate
-
-
-
 
 @Configuration
 @EnableRedisHttpSession
@@ -30,13 +27,13 @@ class RedisConfig {
 
     @Bean
     fun lettuceConnectionFactory(): LettuceConnectionFactory {
-        return LettuceConnectionFactory(host, port)
+        return LettuceConnectionFactory(RedisStandaloneConfiguration(host, port))
     }
 
     @Bean
-    fun redisTemplate(): StringRedisTemplate? {
+    fun redisTemplate(lettuceConnectionFactory: LettuceConnectionFactory): StringRedisTemplate? {
         val redisTemplate = StringRedisTemplate()
-        redisTemplate.setConnectionFactory(lettuceConnectionFactory())
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory)
 
         return redisTemplate
     }
