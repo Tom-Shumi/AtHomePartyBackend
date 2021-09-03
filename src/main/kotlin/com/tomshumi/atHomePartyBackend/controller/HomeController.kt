@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/home")
 class HomeController(
-    private val homeService: HomeService,
-    private val redisUtils: RedisUtils
+    private val homeService: HomeService
 ): BaseController() {
 
     /**
@@ -25,8 +24,6 @@ class HomeController(
     fun home(): ResponseEntity<String> {
 
         val response = HomeResponse(homeService.home())
-
-        redisUtils.set(REDIS_KEY_HOME, response, 600)
 
         val responseJson = gson.toJson(response)
 
