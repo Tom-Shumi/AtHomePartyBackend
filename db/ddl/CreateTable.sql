@@ -121,5 +121,7 @@ DROP TABLE public.pickup_drink;
 CREATE TABLE public.pickup_drink (
 	id serial NOT NULL,
 	drink_id int4 NOT NULL,
+	image_url varchar(255) NOT NULL,
+	delete_flg boolean NOT NULL,
 	CONSTRAINT pk_pickup_drink PRIMARY KEY (id)
 );

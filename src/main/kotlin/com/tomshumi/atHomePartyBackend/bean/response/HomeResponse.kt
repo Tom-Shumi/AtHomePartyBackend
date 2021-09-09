@@ -2,9 +2,10 @@ package com.tomshumi.atHomePartyBackend.bean.response
 
 import com.tomshumi.atHomePartyBackend.bean.dto.HomeDto
 import com.tomshumi.atHomePartyBackend.bean.entity.DrinkRecord
+import com.tomshumi.atHomePartyBackend.bean.entity.PickupDrinkRecord
 
 class HomeResponse(
-    var pickupDrinkList: List<DrinkRecord>,
+    var pickupDrinkList: List<PickupDrinkRecord>,
     var beerRankingList: List<DrinkRecord>,
     var chuhighRankingList: List<DrinkRecord>,
     var sakeRankingList: List<DrinkRecord>,
