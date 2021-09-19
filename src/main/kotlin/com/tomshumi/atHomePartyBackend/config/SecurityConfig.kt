@@ -22,8 +22,6 @@ class SecurityConfig: WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity){
 
-        println("FRONT_ORIGIN:$FRONT_ORIGIN")
-
         http
             .authorizeRequests()
             .mvcMatchers("/**").permitAll()
