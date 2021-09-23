@@ -24,9 +24,6 @@ class BeerController(
     @GetMapping
     fun getList(beerSearchCondition: BeerSearchConditionDto,
              pageable: Pageable): ResponseEntity<String> {
-
-        val responseJson = gson.toJson(beerSearchCondition)
-
-        return createResponseEntity(HttpStatus.OK, responseJson)
+        return createResponseEntity(HttpStatus.OK, gson.toJson(beerService.getList(beerSearchCondition, pageable)))
     }
 }
