@@ -11,4 +11,6 @@ interface BeerMapper {
 
     fun getList(@Param("condition") condition: BeerSearchConditionDto,
                 @Param("pageable") pageable: Pageable): List<BeerInfoDto>
+
+    fun getListCount(@Param("condition") condition: BeerSearchConditionDto): Int
 }

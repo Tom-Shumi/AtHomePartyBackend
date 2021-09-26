@@ -4,7 +4,7 @@ import com.tomshumi.atHomePartyBackend.bean.dto.HomeDto
 import com.tomshumi.atHomePartyBackend.bean.entity.DrinkRecord
 import com.tomshumi.atHomePartyBackend.bean.entity.PickupDrinkRecord
 
-class HomeResponse(
+data class HomeResponse(
     var pickupDrinkList: List<PickupDrinkRecord>,
     var beerRankingList: List<DrinkRecord>,
     var chuhighRankingList: List<DrinkRecord>,

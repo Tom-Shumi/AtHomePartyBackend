@@ -1,5 +1,6 @@
 package com.tomshumi.atHomePartyBackend.config
 
+import com.tomshumi.atHomePartyBackend.Constants
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.web.method.support.HandlerMethodArgumentResolver
@@ -10,7 +11,7 @@ class WebConfig: WebMvcConfigurer {
 
     override fun addArgumentResolvers(argumentResolvers: MutableList<HandlerMethodArgumentResolver>) {
         val resolver = PageableHandlerMethodArgumentResolver()
-        resolver.setMaxPageSize(20)
+        resolver.setMaxPageSize(Constants.PAGE_SIZE)
         argumentResolvers.add(resolver)
     }
 }

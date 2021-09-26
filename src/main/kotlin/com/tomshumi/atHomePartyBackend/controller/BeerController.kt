@@ -1,6 +1,7 @@
 package com.tomshumi.atHomePartyBackend.controller
 
 import com.tomshumi.atHomePartyBackend.bean.dto.BeerSearchConditionDto
+import com.tomshumi.atHomePartyBackend.bean.response.BeerListResponse
 import com.tomshumi.atHomePartyBackend.bean.response.HomeResponse
 import com.tomshumi.atHomePartyBackend.service.BeerService
 import com.tomshumi.atHomePartyBackend.service.HomeService
@@ -24,6 +25,9 @@ class BeerController(
     @GetMapping
     fun getList(beerSearchCondition: BeerSearchConditionDto,
              pageable: Pageable): ResponseEntity<String> {
-        return createResponseEntity(HttpStatus.OK, gson.toJson(beerService.getList(beerSearchCondition, pageable)))
+        val beerListResponse = BeerListResponse(beerService.getList(beerSearchCondition, pageable))
+        beerListResponse.setMaxPage(beerService.getListCount(beerSearchCondition))
+
+        return createResponseEntity(HttpStatus.OK, gson.toJson(beerListResponse))
     }
 }

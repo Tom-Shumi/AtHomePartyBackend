@@ -6,6 +6,20 @@
 
     <select id="getList" resultType="com.tomshumi.atHomePartyBackend.bean.dto.BeerInfoDto">
         SELECT
+            *
+        FROM (<include refid="selectList" />) t
+        LIMIT #{pageable.pageSize}
+        OFFSET #{pageable.offset}
+    </select>
+
+    <select id="getListCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM (<include refid="selectList" />) t
+    </select>
+
+    <sql id="selectList">
+        SELECT
             d.*, bitter, flavor, hop, sharp, body
         FROM
             drink d
@@ -62,8 +76,6 @@
             <if test="condition.isDesc">
                 DESC
             </if>
-        LIMIT #{pageable.pageSize}
-        OFFSET #{pageable.offset}
-    </select>
+    </sql>
 
 </mapper>

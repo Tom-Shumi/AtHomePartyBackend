@@ -2,6 +2,9 @@ package com.tomshumi.atHomePartyBackend
 
 class Constants {
     companion object {
+
+         const val PAGE_SIZE = 2
+
         // HOME Constants
         const val RANK_DISP_NUM = 3
         const val CATEGORY_ID_BEER = 1

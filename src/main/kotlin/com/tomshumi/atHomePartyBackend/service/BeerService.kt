@@ -16,4 +16,6 @@ class BeerService(
     fun getList(beerSearchCondition: BeerSearchConditionDto, pageable: Pageable): List<BeerInfoDto> {
       return beerMapper.getList(beerSearchCondition, pageable)
     }
+
+    fun getListCount(beerSearchCondition: BeerSearchConditionDto): Int = beerMapper.getListCount(beerSearchCondition)
 }
