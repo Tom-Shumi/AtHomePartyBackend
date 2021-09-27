@@ -21,6 +21,6 @@ data class BeerSearchConditionDto(
 ) {
 
     enum class Order {
-        STAR, BITTER, FLAVOR, HOP, SHARP, BODY
+        STAR, ALCOHOL, BITTER, FLAVOR, HOP, SHARP, BODY
     }
 }
