@@ -48,7 +48,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-tomcat")
 	implementation("ch.qos.logback:logback-core")
 	compileOnly("org.projectlombok:lombok")
-	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.postgresql:postgresql")
 	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 	annotationProcessor("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
