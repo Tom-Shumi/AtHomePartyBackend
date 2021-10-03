@@ -10,7 +10,7 @@ import java.time.LocalDate
 @Mapper
 interface PickupDrinkMapper {
 
-    // ピックアップドリンク取得（取得順の指定無し）
+    // ピックアップドリンク取得（取得順の指定無し）TODO ランダム取得
     @Select("SELECT * FROM pickup_drink WHERE delete_flg = false")
     fun find(): List<PickupDrinkRecord>
 }
