@@ -7,6 +7,7 @@ data class DrinkRecord(
     var drinkCategoryId1: Int? = null,
     var drinkCategoryId2: Int? = null,
     var infoUrl: String? = null,
+    var imageUrl: String? = null,
     var alcohol: Short? = null,
     var star: Float? = null
 )

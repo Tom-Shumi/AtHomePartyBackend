@@ -7,6 +7,7 @@ CREATE TABLE public.drink (
 	drink_category_id1 int4 NOT NULL,
 	drink_category_id2 int4 NOT NULL,
 	info_url varchar(255) NULL,
+	image_url varchar(255) NULL,
 	alcohol int2 NOT NULL,
 	star real NOT NULL,
 	CONSTRAINT pk_drink PRIMARY KEY (id)

@@ -7,6 +7,7 @@ data class BeerInfoDto(
     val drinkCategoryId1: Int,
     val drinkCategoryId2: Int,
     val infoUrl: String?,
+    val imageUrl: String?,
     val alcohol: Short,
     val star: Float,
     val bitter: Short,
